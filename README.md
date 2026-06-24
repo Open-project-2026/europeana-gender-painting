@@ -32,6 +32,12 @@ appear in aggregated metadata.
 AI Use Declaration
 This project used Claude, made by Anthropic, as a coding assistant throughout the workflow. It helped generate the initial structure of all four notebooks, debug API connection errors, and draft documentation text. All code was reviewed, run, and verified by the author before being included. The AI did not choose the research question, interpret the findings, or make analytical decisions on its own.
 
+Here are three example prompts I actually used:
+
+I asked it to write a Python script that collects painting records from the Europeana API, querying country by country so I could get around the 1,000-record limit per query.
+When the Wikidata search API kept giving me 403 errors, I asked it to find a different way to look up an artist's gender, which is how I ended up using the SPARQL endpoint instead.
+I asked it to explain in plain terms what each library I used — pandas, requests, matplotlib, and seaborn — actually does in my project, so I could describe this properly in my technical report.
+
 ---
 
 ## Data Source
@@ -72,8 +78,32 @@ This project used Claude, made by Anthropic, as a coding assistant throughout th
  ---**
  
 ## Repository Structure
+Here is how I've organised everything in this repository:
+At the top level there is this README file and a requirements.txt file listing the Python libraries needed to run the code.
+Inside the data folder there are two subfolders. The raw subfolder holds the original data exactly as it came from the Europeana API — the main raw CSV file and a summary file showing how many records came from each country. The processed subfolder holds the cleaned CSV, the final enriched CSV with gender added, and a log file showing the results of the Wikidata gender lookups.
+Inside the notebooks folder are the four numbered notebooks in the order they should be run: data collection, then cleaning, then enrichment, then analysis and visualisation.
+Inside the outputs folder are the five chart images produced by the analysis notebook.
+Inside the docs folder is the original data appendix file plus a new metadata guide that documents every column in the dataset in detail.
 
 ---
+
+Ethical Considerations
+I want to be upfront about a few things in how this project handles its subject matter.
+First, on gender: Wikidata's gender field only ever returns "male" or "female" for almost every record I matched. I am not claiming that historical artists' identities were actually that simple — this is a limitation of the data source I used, not a claim I am making about gender itself.
+Second, on privacy: everything I collected is metadata about historical artworks and artists who are no longer alive, published by museums and archives under open licences. I did not collect any personal data about living people.
+Third, on the "Anonymous" category: many paintings are unattributed for historical reasons that may include the deliberate erasure of women artists' names from the record. Rather than throwing these records away as missing data, I deliberately kept them as their own category so I could study the pattern of anonymity itself.
+
+---
+
+Limitations
+A few honest limitations of this project that I think are worth stating clearly:
+I was only able to match 2,419 of my 7,389 uniquely named artists to a Wikidata entry with a known gender — that's about 32.7%. This means my headline finding of 8.2% female representation only applies to the artists I could actually match, and the real picture across all 27,454 records may look different.
+Thirteen records had no usable year at all in their date field, so they could not be placed into a century for the century-based analysis.
+My "anonymous" category lumps together several different original labels — things like "Unknown," "Workshop of," "Circle of," and "Follower of" — which probably carry different historical meanings but I treated them as one group to keep the analysis manageable.
+Matching names through SPARQL can occasionally confuse one historical figure with another person who happens to share the same name, so there is a small amount of error in the gender data that I have not been able to measure precisely.
+
+---
+
 
 ## FAIR Principles
 
@@ -96,3 +126,20 @@ This project used Claude, made by Anthropic, as a coding assistant throughout th
 | `seaborn` | Statistical visualisations |
 | `re` | Extracting years from messy date strings |
 | `time` | Polite pausing between API requests |
+
+---
+
+Dataset Summary Statistics
+Total records collected: 27,454
+
+Named artists: 26,360 (96.0%)
+
+Anonymous: 1,094 (4.0%)
+
+Records with a year successfully extracted: 27,441 (99.95%)
+
+Records with known gender: 8,690 — of which female is 713 (8.2%) and male is 7,977 (91.8%)
+
+Unique artists matched on Wikidata: 2,419 out of 7,389 (32.7%)
+
+---
