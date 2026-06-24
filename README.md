@@ -29,8 +29,9 @@ appear in aggregated metadata.
 5. Are female artists systematically less documented in museum metadata?
 
 ---
-** AI Use Declaration**
+AI Use Declaration
 This project used Claude, made by Anthropic, as a coding assistant throughout the workflow. It helped generate the initial structure of all four notebooks, debug API connection errors, and draft documentation text. All code was reviewed, run, and verified by the author before being included. The AI did not choose the research question, interpret the findings, or make analytical decisions on its own.
+
 ---
 
 ## Data Source
