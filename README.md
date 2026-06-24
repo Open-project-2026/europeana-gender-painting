@@ -19,6 +19,9 @@ perpetuates biases embedded in the original institutional collections
 and their digitisation processes. This project analyses how those biases 
 appear in aggregated metadata.
 
+** AI Use Declaration**
+This project used Claude, made by Anthropic, as a coding assistant throughout the workflow. It helped generate the initial structure of all four notebooks, debug API connection errors, and draft documentation text. All code was reviewed, run, and verified by the author before being included. The AI did not choose the research question, interpret the findings, or make analytical decisions on its own.
+
 **Sub-questions:**
 1. What proportion of paintings are attributed to female vs. male artists?
 2. Has this proportion changed across historical centuries?
