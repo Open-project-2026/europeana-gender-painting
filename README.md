@@ -67,7 +67,9 @@ This project used Claude, made by Anthropic, as a coding assistant throughout th
 6. **Archiving and sharing** — this public GitHub repository
 
 ---
-
+** Early results show that female artists are credited on only 8.2 percent of identified paintings, with the lowest share in the 17th century at 1.4 percent, despite documented female painters such as Artemisia Gentileschi being active in that period. This points toward historical under-attribution rather than an actual absence of female artists.
+ ---**
+ 
 ## Repository Structure
 
 ---
